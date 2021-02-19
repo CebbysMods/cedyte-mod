@@ -1,0 +1,41 @@
+{
+  "schemaVersion": 1,
+  "id": "cedyte",
+  "version": "0.1.0",
+
+  "name": "Cebbys Dynamic Trees",
+  "description": "Dynamic Trees",
+  "authors": [
+    "CebbyS"
+  ],
+  "contact": {
+    "homepage": "https://github.com/CebbysMods",
+    "sources": "https://github.com/CebbysMods/celib-mod"
+  },
+
+  "license": "MIT",
+  "icon": "assets/cecyte/icon.png",
+
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "com.cebbys.cedyte.Cedyte"
+    ],
+    "client": [
+      "com.cebbys.cedyte.Cedyte"
+    ]
+  },
+  "mixins": [
+    "mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.7.4",
+    "fabric": "*",
+    "minecraft": "1.16.x",
+    "celib": "*",
+    "artifice": "0.14.4+1.16.3"
+  },
+  "suggests": {
+    "flamingo": "*"
+  }
+}
