@@ -19,10 +19,10 @@
   "environment": "*",
   "entrypoints": {
     "main": [
-      "com.cebbys.cedyte.Cedyte"
+      "lv.cebbys.cedyte.Cedyte"
     ],
     "client": [
-      "com.cebbys.cedyte.Cedyte"
+      "lv.cebbys.cedyte.Cedyte"
     ]
   },
   "mixins": [

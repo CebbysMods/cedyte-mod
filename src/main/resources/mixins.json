@@ -1,15 +1,13 @@
 {
   "required": true,
   "minVersion": "0.8",
-  "package": "com.cebbys.cedyte.mixin",
+  "package": "lv.cebbys.cedyte.mixin",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
     "RegistryAccessor"
   ],
-  "client": [
-  ],
-  "server": [
-  ],
+  "client": [ ],
+  "server": [],
   "injectors": {
     "defaultRequire": 1
   }
