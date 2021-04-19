@@ -1,11 +1,10 @@
 package lv.cebbys.cedyte.content.trees.handlers;
 
-import com.cebbys.celib.utilities.CelibBlockPos;
-
 import lv.cebbys.cedyte.content.DynamicTreeBlocks;
 import lv.cebbys.cedyte.content.blocks.abstracts.AbstractBranchBlock;
 import lv.cebbys.cedyte.content.blocks.abstracts.AbstractRootBlock;
 import lv.cebbys.cedyte.content.trees.handlers.abstracts.SimpleTreeHandler;
+import lv.cebbys.celib.utilities.CelibBlockPos;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.entity.BlockEntity;

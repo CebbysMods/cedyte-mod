@@ -1,8 +1,7 @@
 package lv.cebbys.cedyte.content.entities;
 
-import com.cebbys.celib.utilities.CelibBlockPos;
-
 import lv.cebbys.cedyte.content.DynamicTreeEntities;
+import lv.cebbys.celib.utilities.CelibBlockPos;
 import net.minecraft.util.math.Direction;
 
 public class OakBranchEntity extends DynamicBranchEntity {

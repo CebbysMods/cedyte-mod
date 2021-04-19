@@ -8,8 +8,6 @@ import java.util.Set;
 import java.util.function.Function;
 import java.util.function.Supplier;
 
-import com.cebbys.celib.loggers.CelibLogger;
-import com.cebbys.celib.utilities.CelibBlockPos;
 import com.mojang.datafixers.util.Pair;
 
 import lv.cebbys.cedyte.content.entities.DynamicBranchEntity;
@@ -18,6 +16,8 @@ import lv.cebbys.cedyte.content.entities.DynamicStemEntity;
 import lv.cebbys.cedyte.content.trees.BranchStruct;
 import lv.cebbys.cedyte.content.trees.StemStruct;
 import lv.cebbys.cedyte.model.models.abstracts.AbstractBlockModel;
+import lv.cebbys.celib.loggers.CelibLogger;
+import lv.cebbys.celib.utilities.CelibBlockPos;
 import net.fabricmc.fabric.api.renderer.v1.RendererAccess;
 import net.fabricmc.fabric.api.renderer.v1.mesh.Mesh;
 import net.fabricmc.fabric.api.renderer.v1.mesh.MeshBuilder;
@@ -61,16 +61,13 @@ public class DynamicLogBlockModel extends AbstractBlockModel {
 			DynamicStemEntity entity = (DynamicStemEntity) defaultEntity;
 			Direction dir = entity.getDirection();
 			Set<Direction> childPos = entity.getBranchingDirections();
-			int length = entity.getBranchLength();
-			int maxLength = 30;
-			int index = entity.getBranchIndex();
-			int stage = (int) (Math.floor(Math.sqrt(length - index - 0.1) / Math.sqrt(maxLength) * 8.0)) -1;
+			int stage = entity.getGrowthStage();
 			stage = Math.min(6, Math.max(stage, 0));
 			if(dir != null && childPos != null) {
 				byte mask = this.createByteMask(childPos);
 				context.meshConsumer().accept(this.generateStemModel(dir, stage, mask));
 			} else {
-				CelibLogger.log("Model", "Missing, dir, pos, childPos");
+				CelibLogger.log("Missing, dir, pos, childPos");
 			}
 		}
 	}
@@ -137,7 +134,7 @@ public class DynamicLogBlockModel extends AbstractBlockModel {
 				}
 			}
 		} else {
-			CelibLogger.log("DynamicLogBlock", "Direction is null");
+			CelibLogger.log("Direction is null");
 		}
 		return builder.build();
 	}

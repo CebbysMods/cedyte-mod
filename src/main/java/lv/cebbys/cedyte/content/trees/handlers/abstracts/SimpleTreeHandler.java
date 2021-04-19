@@ -2,11 +2,10 @@ package lv.cebbys.cedyte.content.trees.handlers.abstracts;
 
 import java.util.Random;
 
-import com.cebbys.celib.loggers.CelibLogger;
-
 import lv.cebbys.cedyte.content.trees.BranchStruct;
 import lv.cebbys.cedyte.content.trees.StemStruct;
 import lv.cebbys.cedyte.content.trees.TreeStruct;
+import lv.cebbys.celib.loggers.CelibLogger;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.util.math.Direction;

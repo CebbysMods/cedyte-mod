@@ -5,11 +5,11 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import com.cebbys.celib.loggers.CelibLogger;
-import com.cebbys.celib.utilities.CelibBlockPos;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 
+import lv.cebbys.celib.loggers.CelibLogger;
+import lv.cebbys.celib.utilities.CelibBlockPos;
 import net.minecraft.util.math.Vec3d;
 
 public class BranchStruct {

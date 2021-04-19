@@ -3,10 +3,9 @@ package lv.cebbys.cedyte.content.entities;
 import java.util.Set;
 import java.util.TreeSet;
 
-import com.cebbys.celib.loggers.CelibLogger;
-import com.cebbys.celib.utilities.CelibBlockPos;
-
 import lv.cebbys.cedyte.content.trees.StemStruct;
+import lv.cebbys.celib.loggers.CelibLogger;
+import lv.cebbys.celib.utilities.CelibBlockPos;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.nbt.CompoundTag;

@@ -1,9 +1,8 @@
 package lv.cebbys.cedyte.content.entities.util;
 
-import com.cebbys.celib.loggers.CelibLogger;
-import com.cebbys.celib.utilities.CelibBlockPos;
-import com.cebbys.celib.utilities.CelibDirections;
-
+import lv.cebbys.celib.loggers.CelibLogger;
+import lv.cebbys.celib.utilities.CelibBlockPos;
+import lv.cebbys.celib.utilities.CelibDirections;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.Vec3d;
 

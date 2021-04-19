@@ -4,11 +4,10 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.TreeSet;
 
-import com.cebbys.celib.loggers.CelibLogger;
-import com.cebbys.celib.utilities.CelibBlockPos;
-
 import lv.cebbys.cedyte.model.utils.StemMeshBuilder;
 import lv.cebbys.cedyte.utilities.CedyteNbtHelper;
+import lv.cebbys.celib.loggers.CelibLogger;
+import lv.cebbys.celib.utilities.CelibBlockPos;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.block.entity.BlockEntityClientSerializable;
@@ -26,8 +25,7 @@ public abstract class DynamicStemEntity extends BlockEntity implements BlockEnti
 	private Set<Direction> children;
 	private Direction parent;
 	private int stemIndex;
-	private int branchLength;
-	private int maxLength;
+	private int growthStage;
 	
 	
 	public DynamicStemEntity(BlockEntityType<?> type, Direction parent, Set<Direction> children, int stemIndex, int branchLength) {
@@ -35,7 +33,7 @@ public abstract class DynamicStemEntity extends BlockEntity implements BlockEnti
 		this.parent = parent;
 		this.children = children;
 		this.stemIndex = stemIndex;
-		this.branchLength = branchLength;
+		this.growthStage = 0;
 	}
 	
 	protected DynamicStemEntity(BlockEntityType<?> type, Direction parent, int stemIndex, int branchLength) {
@@ -50,7 +48,7 @@ public abstract class DynamicStemEntity extends BlockEntity implements BlockEnti
 	public CompoundTag toTag(CompoundTag tag) {
 		super.toTag(tag);
 		tag.putInt("stem_index", this.stemIndex);
-		tag.putInt("branch_length", this.branchLength);
+		tag.putInt("growth_stage", this.growthStage);
 		tag.putString("parent_direction", this.parent.toString());
 		tag.put("child_directions", CedyteNbtHelper.fromDirectionSet(this.children));
 		return tag;
@@ -60,7 +58,7 @@ public abstract class DynamicStemEntity extends BlockEntity implements BlockEnti
 	public void fromTag(BlockState state, CompoundTag tag) {
 		super.fromTag(state, tag);
 		this.stemIndex = tag.getInt("stem_index");
-		this.branchLength = tag.getInt("branch_length");
+		this.growthStage = tag.getInt("growth_stage");
 		this.parent = Direction.byName(tag.getString("parent_direction"));
 		this.children = CedyteNbtHelper.toDirectionSet(tag.getCompound("child_directions"));
 	}
@@ -76,8 +74,8 @@ public abstract class DynamicStemEntity extends BlockEntity implements BlockEnti
 		this.reloadModel();
 	}
 	
-	public void setBranchLength(int l) {
-		this.branchLength = l;
+	public void setGrowthStage(int s) {
+		this.growthStage = s;
 		this.markDirty();
 	}
 	
@@ -85,8 +83,8 @@ public abstract class DynamicStemEntity extends BlockEntity implements BlockEnti
 		return this.stemIndex;
 	}
 	
-	public int getBranchLength() {
-		return this.branchLength;
+	public int getGrowthStage() {
+		return this.growthStage;
 	}
 	
 	public void addChild(Direction d) {

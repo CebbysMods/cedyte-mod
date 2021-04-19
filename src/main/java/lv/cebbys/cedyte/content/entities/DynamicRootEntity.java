@@ -8,14 +8,13 @@ import java.util.Random;
 import java.util.Set;
 import java.util.function.Supplier;
 
-import com.cebbys.celib.loggers.CelibLogger;
-import com.cebbys.celib.utilities.CelibBlockPos;
-
 import lv.cebbys.cedyte.content.entities.util.IntArrayTagParser;
 import lv.cebbys.cedyte.content.trees.BranchStruct;
 import lv.cebbys.cedyte.content.trees.StemStruct;
 import lv.cebbys.cedyte.content.trees.TreeStruct;
 import lv.cebbys.cedyte.content.trees.handlers.abstracts.AbstractTreeHandler;
+import lv.cebbys.celib.loggers.CelibLogger;
+import lv.cebbys.celib.utilities.CelibBlockPos;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityType;

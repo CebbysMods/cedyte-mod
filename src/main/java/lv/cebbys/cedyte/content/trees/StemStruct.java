@@ -2,9 +2,8 @@ package lv.cebbys.cedyte.content.trees;
 
 import java.util.ArrayList;
 
-import com.cebbys.celib.loggers.CelibLogger;
-import com.cebbys.celib.utilities.CelibBlockPos;
-
+import lv.cebbys.celib.loggers.CelibLogger;
+import lv.cebbys.celib.utilities.CelibBlockPos;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 
@@ -79,7 +78,7 @@ public class StemStruct {
 				this.children.add(index, child);
 			}
 		} else {
-			CelibLogger.log("TreeStructure", "Child is null");
+			CelibLogger.log("Child is null");
 		}
 	}
 

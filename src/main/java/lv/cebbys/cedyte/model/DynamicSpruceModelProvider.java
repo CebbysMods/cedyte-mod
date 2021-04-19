@@ -16,9 +16,9 @@ public class DynamicSpruceModelProvider implements ModelResourceProvider {
 	public @Nullable UnbakedModel loadModelResource(Identifier id, ModelProviderContext context)
 			throws ModelProviderException {
         if(id.equals(new Identifier(Cedyte.MOD_ID, "block/tree/spruce_root"))) {
-            return new DynamicLogBlockModel(new Identifier("minecraft", "block/spruce_log"));
+            return new DynamicLogBlockModel(new Identifier("minecraft", "block/acacia_log"));
         } else if (id.equals(new Identifier(Cedyte.MOD_ID, "block/tree/spruce_branch"))) {
-            return new DynamicLogBlockModel(new Identifier("minecraft", "block/spruce_log"));
+            return new DynamicLogBlockModel(new Identifier("minecraft", "block/acacia_log"));
         } else {
             return null;
         }

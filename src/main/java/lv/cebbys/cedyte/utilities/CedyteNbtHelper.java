@@ -3,8 +3,7 @@ package lv.cebbys.cedyte.utilities;
 import java.util.Set;
 import java.util.TreeSet;
 
-import com.cebbys.celib.utilities.CelibBlockPos;
-
+import lv.cebbys.celib.utilities.CelibBlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.NbtHelper;
 import net.minecraft.nbt.Tag;

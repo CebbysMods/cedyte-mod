@@ -1,9 +1,8 @@
 package lv.cebbys.cedyte.content.entities;
 
-import com.cebbys.celib.utilities.CelibBlockPos;
-
 import lv.cebbys.cedyte.content.DynamicTreeEntities;
 import lv.cebbys.cedyte.content.trees.handlers.OakTreeHandler;
+import lv.cebbys.celib.utilities.CelibBlockPos;
 
 public class OakRootEntity extends DynamicRootEntity  {
 

@@ -3,12 +3,11 @@ package lv.cebbys.cedyte.content.blocks.abstracts;
 import java.util.Random;
 import java.util.function.Supplier;
 
-import com.cebbys.celib.utilities.CelibBlockPos;
-
 import lv.cebbys.cedyte.content.blocks.DynamicBranchBlock;
 import lv.cebbys.cedyte.content.blocks.DynamicRootBlock;
 import lv.cebbys.cedyte.content.entities.DynamicRootEntity;
 import lv.cebbys.cedyte.content.entities.DynamicStemEntity;
+import lv.cebbys.celib.utilities.CelibBlockPos;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockRenderType;

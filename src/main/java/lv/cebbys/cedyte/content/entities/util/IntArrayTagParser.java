@@ -1,8 +1,7 @@
 package lv.cebbys.cedyte.content.entities.util;
 
-import com.cebbys.celib.loggers.CelibLogger;
-
 import lv.cebbys.cedyte.Cedyte;
+import lv.cebbys.celib.loggers.CelibLogger;
 import net.minecraft.util.math.BlockPos;
 
 public class IntArrayTagParser {
@@ -44,7 +43,7 @@ public class IntArrayTagParser {
 					}
 				}
 			} else {
-				CelibLogger.error(Cedyte.MOD_ID, "[ PosArray ] " + "Insertion failed");
+				CelibLogger.error("[ PosArray ] " + "Insertion failed");
 			}
 			return base;
 		}

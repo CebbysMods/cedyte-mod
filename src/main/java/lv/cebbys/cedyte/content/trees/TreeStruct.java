@@ -10,11 +10,13 @@ import java.util.TreeMap;
 
 import org.jetbrains.annotations.Nullable;
 
-import com.cebbys.celib.loggers.CelibLogger;
-import com.cebbys.celib.utilities.CelibBlockPos;
 import com.google.gson.JsonObject;
 
-import lv.cebbys.cedyte.utilities.builder.TreeStructureBuilder;
+import lv.cebbys.cedyte.content.DynamicTreeTemplates;
+import lv.cebbys.cedyte.utilities.builder.TreeTemplateBuilder;
+import lv.cebbys.cedyte.utilities.builder.TreeTemplateParser;
+import lv.cebbys.celib.loggers.CelibLogger;
+import lv.cebbys.celib.utilities.CelibBlockPos;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 
@@ -34,7 +36,8 @@ public class TreeStruct {
 		double s1 = r.nextDouble() * (3.14 / 4);
 		double s2 = r.nextDouble() * 6.28;
 		Vec3d v = new Vec3d(0, 1, 0).rotateX((float)s1).rotateY((float)s2);
-		BranchStruct branch = new BranchStruct(TreeStructureBuilder.getSpruce(), pos);
+		JsonObject template = DynamicTreeTemplates.WEIRD_0.getTemplate();
+		BranchStruct branch = new BranchStruct(TreeTemplateParser.fromTemplate(template), pos);
 		StemStruct stem = StemStruct.forRoot(pos);
 		this.addBranch(branch);
 		this.addStemToBranch(branch, stem);

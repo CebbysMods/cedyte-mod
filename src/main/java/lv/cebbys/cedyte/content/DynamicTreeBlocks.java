@@ -6,6 +6,7 @@ import lv.cebbys.cedyte.content.entities.OakBranchEntity;
 import lv.cebbys.cedyte.content.entities.OakRootEntity;
 import lv.cebbys.cedyte.content.entities.SpruceBranchEntity;
 import lv.cebbys.cedyte.content.entities.SpruceRootEntity;
+import lv.cebbys.celib.loggers.CelibLogger;
 
 public class DynamicTreeBlocks {
 
@@ -13,7 +14,7 @@ public class DynamicTreeBlocks {
     public static final DynamicBranchBlock OAK_BRANCH;
     public static final DynamicRootBlock SPRUCE_ROOT;
     public static final DynamicBranchBlock SPRUCE_BRANCH;
-
+    
     static {
         OAK_ROOT = new DynamicRootBlock( "oak_root", OakRootEntity::new );
         OAK_BRANCH = new DynamicBranchBlock( "oak_branch", OakBranchEntity::new );

@@ -2,9 +2,6 @@ package lv.cebbys.cedyte.content.trees.handlers;
 
 import java.util.Random;
 
-import com.cebbys.celib.loggers.CelibLogger;
-import com.cebbys.celib.utilities.CelibBlockPos;
-
 import lv.cebbys.cedyte.content.DynamicTreeBlocks;
 import lv.cebbys.cedyte.content.blocks.abstracts.AbstractBranchBlock;
 import lv.cebbys.cedyte.content.blocks.abstracts.AbstractRootBlock;
@@ -13,6 +10,8 @@ import lv.cebbys.cedyte.content.trees.BranchStruct;
 import lv.cebbys.cedyte.content.trees.StemStruct;
 import lv.cebbys.cedyte.content.trees.TreeStruct;
 import lv.cebbys.cedyte.content.trees.handlers.abstracts.AbstractTreeHandler;
+import lv.cebbys.celib.loggers.CelibLogger;
+import lv.cebbys.celib.utilities.CelibBlockPos;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.entity.BlockEntity;

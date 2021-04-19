@@ -4,9 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import com.cebbys.celib.loggers.CelibLogger;
-import com.cebbys.celib.utilities.CelibBlockPos;
-
 import lv.cebbys.cedyte.content.blocks.abstracts.AbstractBranchBlock;
 import lv.cebbys.cedyte.content.blocks.abstracts.AbstractRootBlock;
 import lv.cebbys.cedyte.content.entities.DynamicBranchEntity;
@@ -17,11 +14,14 @@ import lv.cebbys.cedyte.content.trees.BranchPart;
 import lv.cebbys.cedyte.content.trees.BranchStruct;
 import lv.cebbys.cedyte.content.trees.StemStruct;
 import lv.cebbys.cedyte.content.trees.TreeStruct;
-import lv.cebbys.cedyte.utilities.builder.TreeStructureBuilder;
+import lv.cebbys.cedyte.utilities.builder.TreeTemplateBuilder;
+import lv.cebbys.celib.loggers.CelibLogger;
+import lv.cebbys.celib.utilities.CelibBlockPos;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.Vec3d;
@@ -97,6 +97,70 @@ public abstract class AbstractTreeHandler {
 		}
 	}
 
+
+
+	/**
+	 * @param stem Stem structure that is going to be placed in world.
+	 * @param ep   Tree origin position / Tree entity position.
+	 * @param w    World in which part will be placed.
+	 */
+	private void placeStem(TreeStruct tree, BranchStruct branch, StemStruct stem, World w) {
+		int branchLength = branch.getStemCount();
+		BlockState state = this.getBranchBlock().getDefaultState();
+		DynamicStemEntity entity = (DynamicStemEntity) this.createBranchEntity(stem.getDir().getOpposite(),
+				branchLength);
+		w.setBlockState(stem.getPos(), state);
+		w.setBlockEntity(stem.getPos(), entity);
+
+		DynamicStemEntity parent = (DynamicStemEntity) w.getBlockEntity(entity.getParentPosition());
+		if(parent == null) {
+			tree.branches.remove(branch);
+			return;
+		}
+		parent.addChild((stem.getDir()));
+		parent.sync();
+
+		for (CelibBlockPos p : branch.getStemPositions()) {
+			if (w.getBlockEntity(p) == null) {
+				tree.branches.remove(branch);
+				return;
+			}
+			DynamicStemEntity e = (DynamicStemEntity) w.getBlockEntity(p);
+			if (e != null) {
+				DynamicStemEntity ep = (DynamicStemEntity) w.getBlockEntity(e.getParentPosition());
+				int maxLength = 20;
+				int index = e.getBranchIndex();
+				int maxStage = 8;
+				int minStage = 0;
+				int stage = getStage(index, branchLength, maxLength, minStage, maxStage);
+				stage = Math.min(7, stage);
+				stage = Math.max(0, stage);
+				if(ep != null) {
+					stage = Math.min(stage, ep.getGrowthStage());
+				}
+				e.setGrowthStage(stage);
+				e.sync();
+			}
+		}
+	}
+	
+	private static int getStage(float index, float branchLength, float maxLength, float minStage, float maxStage) {
+		int type = 0;
+		if(type == 0) {
+			return (int) Math.floor(maxStage - (Math.sqrt(index + (maxLength - branchLength)) * maxStage - minStage) / Math.sqrt(maxLength));
+		} else {
+			return (int) (Math.floor(Math.sqrt(branchLength - index - 0.1) / Math.sqrt(maxLength) * 8.0)) - 1;
+		}
+	}
+	
+	public static void main(String...childDir) {
+		int maxLength = 20;
+		int length = 10;
+		for(int i = 0; i < length; i++) {
+			CelibLogger.flog("Stage:%d", getStage(i, length, maxLength, 0, 8));
+		}
+	}
+	
 	private Direction getStemDirection(CelibBlockPos pos, Direction prefered, World world, Random random) {
 		if (this.isValidDirection(pos, prefered, world)) {
 			return prefered;
@@ -156,40 +220,5 @@ public abstract class AbstractTreeHandler {
 			}
 		}
 		return false;
-	}
-
-	/**
-	 * @param stem Stem structure that is going to be placed in world.
-	 * @param ep   Tree origin position / Tree entity position.
-	 * @param w    World in which part will be placed.
-	 */
-	private void placeStem(TreeStruct tree, BranchStruct branch, StemStruct stem, World w) {
-
-		int branchLength = branch.getStemCount();
-		BlockState state = this.getBranchBlock().getDefaultState().with(AbstractBranchBlock.DIRECTION, stem.getDir());
-		DynamicStemEntity entity = (DynamicStemEntity) this.createBranchEntity(stem.getDir().getOpposite(),
-				branchLength);
-		w.setBlockState(stem.getPos(), state);
-		w.setBlockEntity(stem.getPos(), entity);
-
-		DynamicStemEntity parent = (DynamicStemEntity) w.getBlockEntity(entity.getParentPosition());
-		if(parent == null) {
-			tree.branches.remove(branch);
-			return;
-		}
-		parent.addChild((stem.getDir()));
-		parent.sync();
-
-		for (CelibBlockPos p : branch.getStemPositions()) {
-			if (w.getBlockEntity(p) == null) {
-				tree.branches.remove(branch);
-				return;
-			}
-			DynamicStemEntity e = (DynamicStemEntity) w.getBlockEntity(p);
-			if (e != null) {
-				e.setBranchLength(branchLength);
-				e.sync();
-			}
-		}
 	}
 }
